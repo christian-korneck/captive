@@ -28,3 +28,8 @@ with Go 1.13+ installed:
 go get github.com/christian-korneck/captive/...
 ```
 
+## run with Docker
+
+```
+docker run --rm chko/captive
+```
