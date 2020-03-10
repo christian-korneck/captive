@@ -4,9 +4,14 @@
 
 Intended to be used in shell scripts: Single binary/no dependencies, cross-platform and returns the online status as exit code.
 
+## install
+download executable from [release page](https://github.com/christian-korneck/captive/releases) and copy it to a PATH location (i.e. `/usr/local/bin` or `c:\windows\system32`)
+
 ## usage
 
-Run `captive` (there are no parameters). It will return with exit code `0` when online or exit code `1` when offline. 
+Run `captive` (there are no parameters). It will return with exit code `0` when online or exit code `1` when offline.
+
+Example:
 
 ```
 $ captive
@@ -20,7 +25,7 @@ $ echo $?    #check exit code
 1
 ```
 
-## build/install
+## build
 
 with Go 1.13+ installed:
 
