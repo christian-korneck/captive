@@ -9,6 +9,10 @@ import (
 	"time"
 )
 
+type HTTPClient interface {
+	Do(req *http.Request) (*http.Response, error)
+}
+
 type htdoc struct {
 	Head struct {
 		Title string `xml:"TITLE"`
@@ -26,14 +30,12 @@ func onl() {
 	os.Exit(0)
 }
 
-func Iscaptive() (bool, error) {
+//Iscaptive checks the captive status
+func Iscaptive(client HTTPClient) (bool, error) {
 	const SuccessTitle = "Success"
 	const SuccessBody = "Success"
 	const url = "http://captive.apple.com"
 
-	client := &http.Client{
-		Timeout: 30 * time.Second,
-	}
 	req, err := http.NewRequest("GET", url, nil)
 
 	if err != nil {
@@ -67,7 +69,12 @@ func Iscaptive() (bool, error) {
 }
 
 func main() {
-	c, err := Iscaptive()
+
+	client := &http.Client{
+		Timeout: 30 * time.Second,
+	}
+
+	c, err := Iscaptive(client)
 
 	if err != nil || c != true {
 		offl()
